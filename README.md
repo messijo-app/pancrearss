@@ -1,23 +1,25 @@
-# LiveRSS
+# PancreaRSS
+
 Stream RSS feeds with this GenServer.
 
 <p align="center">
   <img width="600" src="./example.svg">
 </p>
 
-Some of the features of LiveRSS are:
+Some of the features of PancreaRSS are:
+
 - Automatically polling of RSS feeds with a GenServer process
 - Configurable polling rate
-- RSS feed parsing using pure Elixir with `feeder_ex` 
+- RSS feed parsing using pure Elixir with `feeder_ex`
 
 ```elixir
-LiveRSS.Poll.start_link(
+PancreaRSS.Poll.start_link(
   name: :new_york_times,
   url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
   refresh_every: :timer.hours(2)
 )
 
-LiveRSS.get(:new_york_times)
+PancreaRSS.get(:new_york_times)
 
 # %FeederEx.Feed{
 #   id: nil,
@@ -35,6 +37,7 @@ LiveRSS.get(:new_york_times)
 ```
 
 ## Installation
+
 The package can be installed using [hex.pm](http://hex.pm/packages/liverss) by adding
 `liverss` to your list of dependencies in `mix.exs`:
 
@@ -47,4 +50,5 @@ end
 ```
 
 ## Documentation
+
 The documentation for this library can be found at [HexDocs](https://hexdocs.pm/liverss/readme.html).

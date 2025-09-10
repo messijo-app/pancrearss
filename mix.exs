@@ -1,4 +1,4 @@
-defmodule LiveRSS.MixProject do
+defmodule PancreaRSS.MixProject do
   use Mix.Project
 
   def project do
@@ -17,8 +17,8 @@ defmodule LiveRSS.MixProject do
         links: %{"GitHub" => "https://github.com/vinibrsl/liverss"}
       ],
       docs: [
-        name: "LiveRSS",
-        main: "LiveRSS",
+        name: "PancreaRSS",
+        main: "PancreaRSS",
         extras: ["README.md"]
       ]
     ]

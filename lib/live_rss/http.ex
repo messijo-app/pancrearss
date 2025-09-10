@@ -1,4 +1,4 @@
-defmodule LiveRSS.HTTP do
+defmodule PancreaRSS.HTTP do
   @moduledoc """
   This module defines functions to make HTTP requests.
   """
@@ -17,7 +17,7 @@ defmodule LiveRSS.HTTP do
       {:ok, feed}
     else
       error ->
-        Logger.error("LiveRSS: failed to get feed. Reason: #{inspect(error)}")
+        Logger.error("PancreaRSS: failed to get feed. Reason: #{inspect(error)}")
         :error
     end
   end

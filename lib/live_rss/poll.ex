@@ -1,22 +1,22 @@
-defmodule LiveRSS.Poll do
+defmodule PancreaRSS.Poll do
   @moduledoc """
-  LiveRSS.Poll is a GenServer that polls a RSS feed periodically.
+  PancreaRSS.Poll is a GenServer that polls a RSS feed periodically.
 
   ```elixir
-  LiveRSS.Poll.start_link(name: :live_rss_blog, url: "https://blog.test/feed.rss", refresh_every: :timer.hours(2))
-  LiveRSS.Poll.start_link(name: :live_rss_videos, url: "https://videos.test/feed.rss", refresh_every: :timer.hours(1))
-  LiveRSS.Poll.start_link(name: :live_rss_photos, url: "https://photos.test/feed.rss", refresh_every: :timer.minutes(10))
+  PancreaRSS.Poll.start_link(name: :live_rss_blog, url: "https://blog.test/feed.rss", refresh_every: :timer.hours(2))
+  PancreaRSS.Poll.start_link(name: :live_rss_videos, url: "https://videos.test/feed.rss", refresh_every: :timer.hours(1))
+  PancreaRSS.Poll.start_link(name: :live_rss_photos, url: "https://photos.test/feed.rss", refresh_every: :timer.minutes(10))
 
-  %FeederEx.Feed{} = LiveRSS.get(:live_rss_blog)
+  %FeederEx.Feed{} = PancreaRSS.get(:live_rss_blog)
   ```
 
-  Use `LiveRSS.Poll.start_link/1` to start the GenServer. You can use the following
+  Use `PancreaRSS.Poll.start_link/1` to start the GenServer. You can use the following
   options as the example:
   * `name`: the atom name of the process that will be used to retrieve the feed later
   * `url`: the URL of the RSS feed
   * `refresh_every`: the frequency the feed will be fetched by the GenServer
 
-  You can use `LiveRSS.get/1` to retrieve the feed as a `%FeederEx.Feed{}` struct.
+  You can use `PancreaRSS.get/1` to retrieve the feed as a `%FeederEx.Feed{}` struct.
   """
 
   require Logger
@@ -63,7 +63,7 @@ defmodule LiveRSS.Poll do
 
   @impl true
   def init(state) do
-    Logger.info("LiveRSS: Started #{state[:name]} polling every #{state[:refresh_every]}ms")
+    Logger.info("PancreaRSS: Started #{state[:name]} polling every #{state[:refresh_every]}ms")
 
     state = Keyword.merge(@default_state, state)
     schedule_polling(state)
@@ -96,9 +96,9 @@ defmodule LiveRSS.Poll do
   end
 
   defp put_feed(state) do
-    case LiveRSS.HTTP.get(state[:url]) do
+    case PancreaRSS.HTTP.get(state[:url]) do
       {:ok, feed} ->
-        Logger.info("LiveRSS: Updated #{state[:name]} data")
+        Logger.info("PancreaRSS: Updated #{state[:name]} data")
         Keyword.put(state, :feed, feed)
 
       _any ->

@@ -1,4 +1,4 @@
-defmodule LiveRSSTest do
+defmodule PancreaRSSTest do
   use ExUnit.Case
-  doctest LiveRSS
+  doctest PancreaRSS
 end
