@@ -52,7 +52,7 @@ defmodule LiveRSS.Poll do
   Returns a `%FeederEx.Feed{}`. If the feed fails to be fetched, it returns nil and logs
   error.
   """
-  @spec get(atom()) :: %FeederEx.Feed{} | nil
+  # @spec get(atom()) :: %FeederEx.Feed{} | nil
   def get(process_name) do
     process_name
     |> Process.whereis()
@@ -74,11 +74,11 @@ defmodule LiveRSS.Poll do
   @impl true
   def handle_call(:get_feed, _from, state) do
     case state[:feed] do
-      %FeederEx.Feed{} = feed ->
-        {:reply, feed, state}
-
       nil ->
         state = put_feed(state)
+        {:reply, state[:feed], state}
+
+      _ ->
         {:reply, state[:feed], state}
     end
   end
@@ -97,7 +97,7 @@ defmodule LiveRSS.Poll do
 
   defp put_feed(state) do
     case LiveRSS.HTTP.get(state[:url]) do
-      {:ok, %FeederEx.Feed{} = feed} ->
+      {:ok, feed} ->
         Logger.info("LiveRSS: Updated #{state[:name]} data")
         Keyword.put(state, :feed, feed)
 

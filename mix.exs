@@ -35,7 +35,9 @@ defmodule LiveRSS.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:feeder_ex, "~> 1.1"},
+      # {:feeder_ex, "~> 1.1"},
+
+      {:fast_rss, "~> 0.5.0"},
       {:ex_doc, ">= 0.0.0", only: [:dev], runtime: false}
     ]
   end
