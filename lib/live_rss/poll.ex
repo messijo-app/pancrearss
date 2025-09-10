@@ -7,7 +7,7 @@ defmodule PancreaRSS.Poll do
   PancreaRSS.Poll.start_link(name: :live_rss_videos, url: "https://videos.test/feed.rss", refresh_every: :timer.hours(1))
   PancreaRSS.Poll.start_link(name: :live_rss_photos, url: "https://photos.test/feed.rss", refresh_every: :timer.minutes(10))
 
-  %FeederEx.Feed{} = PancreaRSS.get(:live_rss_blog)
+  feed = PancreaRSS.get(:live_rss_blog)
   ```
 
   Use `PancreaRSS.Poll.start_link/1` to start the GenServer. You can use the following

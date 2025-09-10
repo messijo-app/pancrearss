@@ -29,7 +29,7 @@ defmodule PancreaRSS.PollTest do
 
     :erlang.trace(pid, true, [:receive])
     assert_receive {:trace, ^pid, :receive, :poll}, 150
-    assert %FeederEx.Feed{} = PancreaRSS.Poll.get(:rss_nyt)
+    assert feed = PancreaRSS.Poll.get(:rss_nyt)
     Process.exit(pid, :normal)
   end
 
@@ -40,7 +40,7 @@ defmodule PancreaRSS.PollTest do
                name: :rss_nyt
              )
 
-    assert %FeederEx.Feed{} = PancreaRSS.Poll.get(:rss_nyt)
+    assert feed = PancreaRSS.Poll.get(:rss_nyt)
     Process.exit(pid, :normal)
   end
 end

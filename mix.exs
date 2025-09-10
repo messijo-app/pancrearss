@@ -3,18 +3,18 @@ defmodule PancreaRSS.MixProject do
 
   def project do
     [
-      app: :liverss,
+      app: :pancrearss,
       version: "0.1.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: [
-        name: :liverss,
+        name: :pancreass,
         licenses: ["MIT"],
         description: "Stream RSS feeds with this GenServer",
-        source_url: "https://github.com/vinibrsl/liverss",
-        homepage_url: "https://github.com/vinibrsl/liverss",
-        links: %{"GitHub" => "https://github.com/vinibrsl/liverss"}
+        source_url: "https://github.com/cmgriffing/pancrearss",
+        homepage_url: "https://github.com/cmgriffing/pancrearss",
+        links: %{"GitHub" => "https://github.com/cmgriffing/pancrearss"}
       ],
       docs: [
         name: "PancreaRSS",
@@ -27,8 +27,8 @@ defmodule PancreaRSS.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      applications: [:inets, :ssl],
-      extra_applications: [:logger, :feeder_ex]
+      # applications: [:inets, :ssl],
+      extra_applications: [:logger]
     ]
   end
 

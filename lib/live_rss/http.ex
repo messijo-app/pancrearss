@@ -13,7 +13,8 @@ defmodule PancreaRSS.HTTP do
   def get(feed_url) do
     with {:ok, {{_, status, _}, _headers, body}} <- :httpc.request(feed_url),
          status when status in 200..299 <- status,
-         {:ok, feed} <- FastRSS.parse_rss(body) do
+         body_text <- List.to_string(body),
+         {:ok, feed} <- FastRSS.parse_rss(body_text) do
       {:ok, feed}
     else
       error ->
