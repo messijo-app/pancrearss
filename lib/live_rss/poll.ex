@@ -59,7 +59,7 @@ defmodule PancreaRSS.Poll do
     |> GenServer.call(:get_feed)
   end
 
-  @default_state [refresh_every: :timer.hours(1), url: nil, feed: nil]
+  @default_state [refresh_every: :timer.hours(1), url: nil, feed: nil, callback: nil]
 
   @impl true
   def init(state) do
@@ -99,6 +99,11 @@ defmodule PancreaRSS.Poll do
     case PancreaRSS.HTTP.get(state[:url]) do
       {:ok, feed} ->
         Logger.info("PancreaRSS: Updated #{state[:name]} data")
+
+        if not is_nil(state[:callback]) do
+          state[:callback].(feed)
+        end
+
         Keyword.put(state, :feed, feed)
 
       _any ->
